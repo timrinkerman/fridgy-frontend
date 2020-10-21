@@ -20,10 +20,12 @@ class IngredientPage extends Component{
    }
    addToFaves = (recipe) => {
     console.log(recipe)
+    window.alert(`${recipe.title} has been added to your favorites!`)
     let ingredients = recipe.extendedIngredients.map(ingredient => ingredient.name)
     axios.post("http://localhost:3001/user_recipes", {
     title: recipe.title,
     ingredients: ingredients,
+    readyInMinutes: recipe.readyInMinutes,
     sourceUrl: recipe.sourceUrl,
     image: recipe.image,
     user_id: this.props.user.id
@@ -31,8 +33,9 @@ class IngredientPage extends Component{
   { withCredentials: true }
   )
   }
-   componentDidMount = () => {
-       this.fetchIngredients()
+   componentDidMount(){
+    console.log(this.props.user)   
+    this.fetchIngredients()
    }
    
 fetchIngredients = () => {
@@ -75,6 +78,7 @@ console.log("this is no")
 
 addToShoppingList = (recipe) =>{
   console.log(recipe)
+  window.alert(`${recipe.title}'s missing ingredients have been added to your shopping list!`)
   let ingredients = recipe.missedIngredients.map(ingredient => ingredient.name)
     axios.post("http://localhost:3001/shopping_items", {
   recipe: recipe.title,
@@ -145,16 +149,16 @@ handleDeleteIngredient = (ingredient) =>{
         return(
             <div>
               <header className="header-component">
-              <NavLink to="/userpage" className='home-button' ><span className="login-text"><strong>Main</strong></span></NavLink><br></br>
-              <div><form onSubmit={this.handleSubmit}>
-            <label>
-              Ingredient:
+              <NavLink to="/userpage" className='home-button' ><span className="fridgy-text"><strong>Fridgy</strong></span></NavLink><br></br>
+              <div><form className="ingredient-submit" onSubmit={this.handleSubmit}>
+            <label className='add-an-ingredient'>
+              Add an ingredient:
               <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
           </form></div>
               <div className="navigation-buttons">
-              <NavLink to="/recipes" className="recipes" >Saved Recipes</NavLink><br></br>
+              <NavLink to="/recipes" className="recipes" >Saved Recipes</NavLink>
               <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
               </div>
               </header>
@@ -163,17 +167,15 @@ handleDeleteIngredient = (ingredient) =>{
                
                
                
-               {/* <div className='card-row'> */}
-               What you got!
+               <div className='ingredients-body-content'>
+               What's in the fridge:
                 {this.state.ingredients.map(ingredient => 
                     <IngredientCard ingredient={ingredient} key={ingredient.id + ingredient.name} handleDeleteIngredient={this.handleDeleteIngredient}/>)}<br></br>
                       <button onClick={this.handleClick}>submit</button><br></br>
                       <div className="card-row" > 
                        {this.state.recipes.map(recipe => (<WantedRecipeCard recipe={recipe} key={recipe.id + recipe.name} wholeRecipe={this.state.wholeRecipe} handleClick={this.displayMissingIngredients} addToShoppingList={this.addToShoppingList} addToFavs={this.addToFaves} handleReadMore={this.handleReadMore}/>))}
-                      
-                      {/* what you need!
-                      {this.state.missingIngredients.map(ingredient => 
-                    (<MissingIngredientCard ingredient={ingredient} />))} */}
+                       </div>
+                     
                </div>
            </div>
         )

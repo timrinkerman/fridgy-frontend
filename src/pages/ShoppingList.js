@@ -27,7 +27,13 @@ fetch("http://localhost:3001/shopping_items")
 }
 
 handleDeleteIngredient = (ingredient) =>{
-
+  console.log(ingredient)
+  let text = ingredient.name.split('')
+  let text2 = text.filter(letter  => letter !== "[")
+  let text3 = text2.filter(letter => letter !== "]")
+  let text4 = text3.filter(letter => letter !== '"')
+  let final = text4.join("")
+  if(window.confirm(`Are you sure you want to delete ${ingredient.recipe} from you shopping list?`)){
     let array = [...this.state.shoppingItems]; // make a separate copy of the array
     let index = array.indexOf(ingredient)
     array.splice(index, 1)
@@ -41,7 +47,9 @@ handleDeleteIngredient = (ingredient) =>{
         'Content-type': 'application/json'
       }
       })
-    }
+    }else{
+      console.log("hey")
+    }}
 
     setShoppingItems = (shoppingItems) => {
       const newShoppingItems = shoppingItems.filter(item => (item.user_id === this.props.user.id))
@@ -99,17 +107,17 @@ handleDeleteIngredient = (ingredient) =>{
         
         <div>
              <header className="header-component">
-              <NavLink to="/userpage" className='home-button' ><span className="login-text"><strong>Main</strong></span></NavLink><br></br>
+              <NavLink to="/userpage" className='home-button' ><span className="fridgy-text"><strong>Fridgy</strong></span></NavLink><br></br>
             <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button"  ><strong>Ingredients</strong> </NavLink><br></br>
             <NavLink to="/recipes" className="recipes" >Saved Recipes</NavLink><br></br>
             </header>
-            <div><form onSubmit={this.handleSubmit}>
+            {/* <div><form onSubmit={this.handleSubmit}>
             <label>
               Ingredient:
               <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
-          </form></div>
+          </form></div> */}
         Shopping List
         <div className='card-row'>
              

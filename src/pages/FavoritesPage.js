@@ -47,12 +47,12 @@ handleDelete = (recipe) => {
          <div className="fridgy-main-header">
         <header className="header-component">
         
-        <NavLink to="/userpage" className='home-button' ><span className="login-text"><strong>Main</strong></span></NavLink>
+        <NavLink to="/userpage" className='home-button' ><span className="fridgy-text"><strong>Fridgy</strong></span></NavLink>
         </header>
         <div className="navigation-buttons">
         <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button"  ><strong>Ingredients</strong> </NavLink>
         <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
-        </div>
+        </div><br></br>
         
         <div className="card-row">
         {this.state.recipes.map(recipe => (<UserRecipeCard recipe={recipe} key={recipe.id} handleDelete={this.handleDelete} />))}

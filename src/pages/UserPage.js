@@ -23,13 +23,15 @@ class MainPage extends React.PureComponent{
     userRecipes: [],
   };
  
-this.handleChange = this.handleChange.bind(this);
-this.handleSubmit = this.handleSubmit.bind(this);
+// this.handleChange = this.handleChange.bind(this);
+// this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 
- componentDidMount = () =>{
-    this.fetchRandom()
+ componentDidMount(){
+  console.log(this.props.user)  
+  
+  this.fetchRandom()
     this.fetchVeg()
     this.fetchGlutenFree()
     // this.fetchIngredients()
@@ -37,27 +39,27 @@ this.handleSubmit = this.handleSubmit.bind(this);
 
 fetchRandom = () => {
   console.log("hey")
-  // fetch("https://api.spoonacular.com/recipes/random?number=5&apiKey=a820779a09b941cb84aff653698930e1")
-  //   .then(res => res.json())
-  //   .then(data => this.setState({recipes: data.recipes}))
+  fetch("https://api.spoonacular.com/recipes/random?number=5&apiKey=a3d1d81d14934346b6475f9c622814f0")
+    .then(res => res.json())
+    .then(data => this.setState({recipes: data.recipes}))
 }
 
 fetchVeg = () =>{
   console.log("hey")
-  // fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegetarian&apiKey=a820779a09b941cb84aff653698930e1")
-  // .then(res => res.json())
-  // .then(data => this.setState({vegRecipes: data.recipes}))
-}
+  fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegetarian&apiKey=a3d1d81d14934346b6475f9c622814f0")
+  .then(res => res.json())
+  .then(data => this.setState({vegRecipes: data.recipes}))
+ }
 
 fetchGlutenFree = () =>{
   console.log("hey")
-  // fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegan&apiKey=a820779a09b941cb84aff653698930e1")
-  // .then(res => res.json())
-  // .then(data => console.log(data.recipes))
+  fetch("https://api.spoonacular.com/recipes/random?number=5&tags=Gluten Free&apiKey=a3d1d81d14934346b6475f9c622814f0")
+  .then(res => res.json())
+  .then(data => this.setState({glutenFree: data.recipes}))
 }
 
 addToIngredients = (ingredient) => {
-  //console.log(ingredient)
+  console.log(this.props.user)
   axios.post("http://localhost:3001/ingredients", {
   name: ingredient,
   user_id: this.props.user.id
@@ -83,6 +85,7 @@ addToFaves = (recipe) => {
   axios.post("http://localhost:3001/user_recipes", {
   title: recipe.title,
   ingredients: ingredients,
+  readyInMinutes: recipe.readyInMinutes,
   sourceUrl: recipe.sourceUrl,
   image: recipe.image,
   user_id: this.props.user.id
@@ -110,13 +113,13 @@ handleLogoutClick(){
 
 
 
-handleChange(event) {
+handleChange = (event) =>{
 
 this.setState({value: event.target.value});
 }
 
-handleSubmit(event) {
-//console.log(this.state.value)
+handleSubmit = (event) =>{
+console.log(this.state.value)
 alert(`We've added ${this.state.value} to your list`);
 event.preventDefault();
 this.addToIngredients(this.state.value)
@@ -153,11 +156,9 @@ render(){
         <hr className="header-line"/>
         </div>
     
-    <div className="section-container-mainpage">
-    <Favorites recipes={this.state.userRecipes} />
-    {/* <Ingredients ingredients={this.props.ingredients} /> */}
+    <p>Spotlight</p>
     <div className="card-row" >
-      Spot light
+      
     <Recipes addToFaves={this.addToFaves} recipes={this.state.recipes}/>
 
   </div>
@@ -165,11 +166,11 @@ render(){
     Vegetarian
   <Recipes addToFaves={this.addToFaves} recipes={this.state.vegRecipes}/>
     </div>
-    {/* <div className="card-row">
-      Gluten Free
+    <div className="card-row">
+    Vegan
     <Recipes addToFaves={this.addToFaves} recipes={this.state.glutenFree}/>
-    </div> */}
     </div>
+    {/* </div> */}
   </Fragment>
   )
 }

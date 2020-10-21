@@ -29,10 +29,12 @@ const WantedRecipeCard = (props) => {
             </div><br></br>
             <button onClick={() => {setIsOpen(true); props.handleReadMore(props.recipe)} } >OPen Modal</button>
             <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-        <p>Hello from Modal</p>
-        <button onClick={() => props.addToShoppingList(props.recipe)}>add to my shopping list</button> 
-        <button onClick={() => props.addToFavs(props.wholeRecipe)}>add to my favorites</button> 
-        <a href={props.wholeRecipe.sourceUrl}>readmore</a>
+        <p>{props.recipe.title}</p>
+        <p>You still need:</p>
+        <p>{names}</p>
+        <button onClick={() => props.addToShoppingList(props.recipe)}>add these ingredients to my shopping list</button><br></br> 
+        <button onClick={() => props.addToFavs(props.wholeRecipe)}>add this recipe to my favorites</button> <br></br>
+        <a href={props.wholeRecipe.sourceUrl}>Read more</a>
     </Modal>
         </div>
     </div>

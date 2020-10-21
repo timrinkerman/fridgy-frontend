@@ -27,6 +27,7 @@ class LoginComponent extends Component {
         )
         .then(response => {
             if (response.data.logged_in){
+                this.props.handleCheckLogin()
                 this.props.handleSuccessfulAuth(response.data); 
             }
         })

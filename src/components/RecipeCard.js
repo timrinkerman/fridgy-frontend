@@ -2,8 +2,9 @@ import React, { Fragment } from 'react'
 import Ingredients from '../containers/Ingredients'
 
 const Recipe = (props) => {
-    const {id, title, image, sourceUrl, readyInMinutes, extendedIngredients, vegitarian} = props.recipe
-    console.log(props.recipe)
+    const {id, title, image, sourceUrl, readyInMinutes, extendedIngredients, vegetarian, vegan, glutenFree} = props.recipe
+    //console.log(props.recipe)
+    //console.log(vegetarian)
     return(
     <div className="column">
     <>
@@ -20,10 +21,19 @@ const Recipe = (props) => {
 
             </div><br></br>
             <div className="vegitarian">
-            vegitarian status: 
-            {vegitarian ? "no" : "yes"}
+            Vegetarian?: 
+            {vegetarian ? "Yes" : "No"}
+            </div>
+            <div className="vegitarian">
+            Vegan?: 
+            {vegan ? "Yes" : "No"}
+            </div>
+            <div className="vegitarian">
+            Gluten Free?: 
+            {glutenFree ? "Yes" : "No"}
             </div>
             <div className="ingredients">
+            Ingredients:
             {`${extendedIngredients.map(ingredient => ingredient.name)}, `}
             </div><br></br>
         </div>

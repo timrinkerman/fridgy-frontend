@@ -29,7 +29,9 @@ class App extends Component {
   checkLoginStatus = () => {
     console.log("checkLoginStatus")
     axios.get("http://localhost:3001/logged_in", { withCredentials: true})
+  
     .then(response => {
+      console.log(response)
       if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN"){
         this.setState({
           loggedInStatus: "LOGGED_IN",
@@ -47,7 +49,7 @@ class App extends Component {
     })
   }
 
-  componentDidMount = () => {
+  componentDidMount = () =>{
     this.checkLoginStatus()
     // this.fetchIngredients()
   }
@@ -116,16 +118,18 @@ class App extends Component {
     <Route exact path="/" render={props => (<LoginPage {...props}  
     handleLogin={this.handleLogin} 
     handleLogout={this.handleLogout} 
+    handleCheckLogin={this.checkLoginStatus}
     loggedInStatus={this.state.loggedInStatus}/>)}/>
     <Route exact path="/login" render={props => (<LoginPage {...props}  
     handleLogin={this.handleLogin} 
     handleLogout={this.handleLogout} 
+    handleCheckLogin={this.checkLoginStatus}
     loggedInStatus={this.state.loggedInStatus}/>)}/>
     
     <Route exact path="/registration" render={props => (<RegistrationPage {...props} 
     handleLogin={this.handleLogin} 
     loggedInStatus={this.state.loggedInStatus}/> )} />
-    <Route exact path="/userpage" render={props => (<UserPage {...props} ingredients={this.state.ingredients} user={this.state.user} handleLogout={this.handleLogout} />)}/>
+    <Route exact path="/userpage" render={props => (<UserPage {...props} ingredients={this.state.ingredients} user={this.state.user} handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     <Route exact path ="/ingredients" render={props => (<IngredientPage {...props} user={this.state.user}/>)}/>
     <Route exact path ="/recipes" render={props => (<FavoritesPage {...props} recipes={this.state.recipes} user={this.state.user}/>)}/>
     <Route exact path ="/shoppinglist" render={props => (<ShoppingList {...props} user={this.state.user}/>)}/>

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 const Ingredient = (props) => {
     const {name} = props.ingredient
-    console.log(props, "something")
+    //console.log(props, "something")
     return(
     <div className="column">
     <div className="ui-card" >
