@@ -5,8 +5,8 @@ const Ingredient = (props) => {
     const {name} = props.ingredient
     //console.log(props, "something")
     return(
-    <div className="column">
-    <div className="ui-card" >
+    
+    <div className="wrapper" >
         <div className="content">
             <div className="title">
                 {name}
@@ -14,8 +14,9 @@ const Ingredient = (props) => {
            
             
         </div>
-    </div>
-    <button className='ingredient-delete-btn' onClick={() => props.handleDeleteIngredient(props.ingredient)}>delete ingredient</button><br></br>
+    
+    <button className='read-more' onClick={() => props.handleClick(props.ingredient)}>search ingredient</button><br></br>
+    <button className='read-more' onClick={() => props.handleDeleteIngredient(props.ingredient)}>delete ingredient</button><br></br>
 </div>
     )
 }

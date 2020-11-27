@@ -8,15 +8,19 @@ import IngredientCard from '../components/IngredientCard'
 import MissingIngredientCard from '../components/MissingIngredientCard'
 import RecipeCard from '../components/RecipeCard'
 import WantedRecipeCard from '../components/WantedRecipeCard'
+import logo from '../assets/logo.png'
 class IngredientPage extends Component{
-   state = {
+  constructor(props){
+    super(props)
+  
+  this.state = {
        ingredients: [],
        recipes: [],
        missingIngredients: [],
        wholeRecipe: [],
        value: ''
 
-       
+  }     
    }
    addToFaves = (recipe) => {
     console.log(recipe)
@@ -34,8 +38,10 @@ class IngredientPage extends Component{
   )
   }
    componentDidMount(){
-    console.log(this.props.user)   
+    console.log("hey from ingredients")  
+    this.props.handleCheckLogin()
     this.fetchIngredients()
+    this.setState({ingredients: this.props.ingredients})
    }
    
 fetchIngredients = () => {
@@ -50,7 +56,7 @@ setIngredients = (ingredients) => {
 
  handleClick = () => {
   console.log("hey")
-  fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${this.state.ingredients.map(ingredient => ingredient.name).join(",+")}&number=10&apiKey=a3d1d81d14934346b6475f9c622814f0`)
+  fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${this.state.ingredients.map(ingredient => ingredient.name).join(",+")}&number=10&apiKey=6b82bd43bd3f47b7b66398a4e4c11249`)
     .then(res => res.json())
     .then(data => this.getWholeRecipe(data))
 }     
@@ -76,6 +82,12 @@ console.log("this is no")
 }
  }
 
+ handleLogoutClick(){
+  axios.delete("http://localhost:3001/logout", {withCredentials: true})
+  .then(resp=>this.props.handleLogout())
+  .catch(error=>console.log('logout error', error))
+  
+}
 addToShoppingList = (recipe) =>{
   console.log(recipe)
   window.alert(`${recipe.title}'s missing ingredients have been added to your shopping list!`)
@@ -98,12 +110,11 @@ addToShoppingList = (recipe) =>{
 }
 
 handleReadMore = (recipe) =>{
-  console.log(recipe)
-// //console.log(recipe)
-fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?&apiKey=a3d1d81d14934346b6475f9c622814f0`)
+  
+fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?&apiKey=6b82bd43bd3f47b7b66398a4e4c11249`)
   .then(res => res.json())
   .then(data => this.setState({wholeRecipe: data}))
-//   .then(data => this.setState({sourceUrl: data.sourceUrl}))
+
  }
 
 handleDeleteIngredient = (ingredient) =>{
@@ -144,40 +155,61 @@ handleDeleteIngredient = (ingredient) =>{
     { withCredentials: true }
     )
     .then(response => this.setState({ingredients: response.data}))}
-        render(){
+        
+    
+    handleIngredientClick = (ingredient) => {
+      console.log(ingredient)
+      fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient.name}&number=10&apiKey=6b82bd43bd3f47b7b66398a4e4c11249`)
+        .then(res => res.json())
+        .then(data => this.getWholeRecipe(data))
+     }     
+    
+    render(){
         //console.log(this.state)
         return(
-            <div>
-              <header className="header-component">
-              <NavLink to="/userpage" className='home-button' ><span className="fridgy-text"><strong>Fridgy</strong></span></NavLink><br></br>
-              <div><form className="ingredient-submit" onSubmit={this.handleSubmit}>
-            <label className='add-an-ingredient'>
-              Add an ingredient:
-              <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-          </form></div>
-              <div className="navigation-buttons">
-              <NavLink to="/recipes" className="recipes" >Saved Recipes</NavLink>
-              <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
+            
+          <div className="container">
+          <div className="">
+          <NavLink to="/userpage" className='home-button' ><a href="" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
+                
               </div>
-              </header>
-                {/* <Ingredients ingredients={this.state.ingredients} recipes={this.state.recipes} addToFaves={this.addToFaves} /> */}
+            <header className="header-component">
+           
+              <NavLink to="/" className='home-login' onClick={() => this.handleLogoutClick()}><span className="login-text"><strong>Sign Out</strong></span></NavLink><br></br>
+            
+              <div className="add-ingredient"><form className="" onSubmit={this.handleSubmit}>
+                <label className="ingredient-input">
+                  Ingredient:
+                  <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
+                </label>
+                <input type="submit" value="Submit" />
+              </form>
+              </div>
+                <div className="navigation-buttons">
+                <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button">Refrigerator</NavLink>
+                <NavLink to="/recipes" className="recipes" >Favorites</NavLink>
+                <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
+                </div>
+                </header><br></br>
+                <hr className="header-line"/>
+                {/* </div> */}
+     
               
+                <p className="title-text">What's in the fridge</p>
+               <div className='wrapper-2'>
                
-               
-               
-               <div className='ingredients-body-content'>
-               What's in the fridge:
                 {this.state.ingredients.map(ingredient => 
-                    <IngredientCard ingredient={ingredient} key={ingredient.id + ingredient.name} handleDeleteIngredient={this.handleDeleteIngredient}/>)}<br></br>
-                      <button onClick={this.handleClick}>submit</button><br></br>
+                    <IngredientCard ingredient={ingredient} key={ingredient.id + ingredient.name} handleDeleteIngredient={this.handleDeleteIngredient} handleClick={this.handleIngredientClick} />)}<br></br>
+                      <button className="home-login" onClick={this.handleClick}>Search all</button>
+                      </div><br></br>
                       <div className="card-row" > 
                        {this.state.recipes.map(recipe => (<WantedRecipeCard recipe={recipe} key={recipe.id + recipe.name} wholeRecipe={this.state.wholeRecipe} handleClick={this.displayMissingIngredients} addToShoppingList={this.addToShoppingList} addToFavs={this.addToFaves} handleReadMore={this.handleReadMore}/>))}
                        </div>
                      
-               </div>
+              
            </div>
+           
+           
         )
     }
 }

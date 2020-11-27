@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-
+import {NavLink } from "react-router-dom";
 
 class LoginComponent extends Component {
     state = { 
@@ -37,15 +37,16 @@ class LoginComponent extends Component {
 
     render() { 
         return ( 
-            <div className="login-form">
-                <form onSubmit={this.handleSubmit}>
-                <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required/>
+            <div className="form-group">
+                <form class="form-label"onSubmit={this.handleSubmit}>
+                <input class="form-input" type="email" name="email" placeholder="enter an email" value={this.state.email} onChange={this.handleChange} required/>
                 <br></br>
-                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
+                <input class="form-input" type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
                 <br></br>
-                <button className="auth-button" type='submit'><span className="auth-button-text"><strong>Login</strong></span></button>
+                <button class="btn-primary" type='submit' ><span className="auth-button-text"><strong>Login</strong></span></button>
+                
                 </form>
-            </div>
+                </div>
          );
     }
 }

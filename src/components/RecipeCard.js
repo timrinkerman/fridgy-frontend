@@ -3,19 +3,20 @@ import Ingredients from '../containers/Ingredients'
 
 const Recipe = (props) => {
     const {id, title, image, sourceUrl, readyInMinutes, extendedIngredients, vegetarian, vegan, glutenFree} = props.recipe
-    //console.log(props.recipe)
+    console.log(props.recipe)
     //console.log(vegetarian)
+    //extendedIngredients.map(ingredient => console.log(ingredient.name + " "))
     return(
     <div className="column">
     <>
-    <div className="recipe-card" key={id} onClick={() => props.handleClick(props.recipe)}>
+    <div className="recipe-card" key={id} >
         <div className="image">
-            <img alt="2012 Toyota tundra" src={image} />
+            <img alt="2012 Toyota tundra" src={image} /><br></br>
         </div>
         <div className="content">
-            <div className="title">
+            <div className="title-2">
                 {title}
-            </div>
+            </div><br></br>
             <div className="cooking time">
                 <small>Cooking Time: {readyInMinutes} minuets</small>
 
@@ -34,12 +35,14 @@ const Recipe = (props) => {
             </div>
             <div className="ingredients">
             Ingredients:
-            {`${extendedIngredients.map(ingredient => ingredient.name)}, `}
+            {`${extendedIngredients.map(ingredient => " " + ingredient.name)}`}
             </div><br></br>
+            <button className="add-to-favs"onClick={() => props.handleClick(props.recipe)}>Add to my favorites</button><br></br>
+            <a className="read-more" href={sourceUrl} target="_blank">Read more...</a>
         </div>
     </div>
     </>
-    <a className="read-more" href={sourceUrl}>Read more...</a>
+    {/* <a className="read-more" href={sourceUrl}>Read more...</a> */}
 </div>
     )
 }

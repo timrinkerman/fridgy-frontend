@@ -22,7 +22,7 @@ const UserRecipeCard = (props) => {
             <img alt="2012 Toyota tundra" src={image} />
         </div>
         <div className="content">
-            <div className="title">
+            <div className="title-2">
                 {title}
             </div>
             <div className="cooking time">
@@ -32,14 +32,12 @@ const UserRecipeCard = (props) => {
             <div className="ingredients">
             Ingredients: {final}
             </div><br></br>
-            <a className="read-more" href={sourceUrl}>Read more...</a>
-            {/* <button onClick={() => setIsOpen(true)} >OPen Modal</button>
-            <Modal open={isOpen} onClose={() => setIsOpen(false)}>
-       <p>{props.recipe}</p>
-    </Modal> */}
+            <a className="read-more" href={sourceUrl} target="_blank">Read more...</a><br></br>
+            <button className="delete-button" onClick={() => props.handleDelete(props.recipe)}>Delete</button>
+       
         </div>
     </div>
-    <button className="delete-recipe" onClick={() => props.handleDelete(props.recipe)}>Delete</button>
+   
 </div>
     )
 }

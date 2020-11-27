@@ -3,7 +3,7 @@ import axios from 'axios';
 import Registration from "../auth/RegistrationComponent"
 import { NavLink } from 'react-router-dom'
 import LoginComponent from "../auth/LoginComponent";
-
+import logo from '../assets/logo.png'
 
 class LoginPage extends Component{
 constructor(props){
@@ -21,23 +21,34 @@ constructor(props){
     render(){
         return(
             <Fragment>
-                <header className="header-component">
+             
+               
                     {/* <NavLink to="/" className='home-login' ><span className="login-text"><strong>Home</strong></span></NavLink> */}
-                    <div className="content">
+                    {/* <div className="content">
                     <div className="fridgy-title">Fridgy</div>
+                    <a href="" className="logo"><img className="logo" src={logo} alt=""/></a>
                     </div>
-                    <hr className="header-line"/>
-                </header>
+                    <hr className="header-line"/> */}
+              
 
-                <div className="form-container">
+                <div className="wrapper">
+                <a href="" className="logo-wrap"><img className="logo" src={logo} alt=""/></a>
+                    
+                <h3 class="title">Build recipes with what you already have in your Fridge!</h3>
+	            <p class="desc">Sign in</p>
+                
                     <LoginComponent handleCheckLogin={this.props.handleCheckLogin} handleSuccessfulAuth={this.handleSuccessfulAuth}/>
-                    <NavLink to="/registration" className='registration'>Don't have credentials? Sign up</NavLink>
+                    <NavLink to="/registration" className='registration center-self'>Don't have credentials? Sign up</NavLink>
                     <br></br>
-                    {/* <button onClick={() => this.handleLogoutClick()}>Logout</button> */}
+                
                 </div>
+               
             </Fragment>
 
         )
     }
 }
 export default LoginPage
+
+
+

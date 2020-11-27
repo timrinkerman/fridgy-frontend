@@ -15,16 +15,20 @@ import IngredientPage from './pages/IngredientPage';
 import Favorites from './containers/Favorites';
 import FavoritesPage from './pages/FavoritesPage'
 import ShoppingList from './pages/ShoppingList'
+
 const key = "4a3311546fe34804ba49b5e07d88c2e7"
 const url = `https://api.spoonacular.com/recipes/findByIngredients.json?api-key=${key}`
 const apiCall =  "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2"
 class App extends Component {
+ constructor(props){
+   super(props);
  
-  state = {
+  this.state = {
     loggedInStatus: "NOT_LOGGED_IN",
     user: {},
-    recipes: [] 
-  }
+    recipes: [], 
+    ingredients: []
+  };}
 
   checkLoginStatus = () => {
     console.log("checkLoginStatus")
@@ -51,9 +55,9 @@ class App extends Component {
 
   componentDidMount = () =>{
     this.checkLoginStatus()
-    // this.fetchIngredients()
+    this.fetchIngredients()
   }
-
+  
   handleLogin = (data) => {
     this.setState({
       loggedInStatus: "LOGGED_IN",
@@ -67,47 +71,16 @@ class App extends Component {
       user: {}
     })
   }
-//   fetchIngredients = () => {
-//     fetch("http://localhost:3001/ingredients")
-//       .then(res => res.json())
-//       .then(ingredients => this.setIngredients(ingredients))
-//   }
-
-//   setIngredients = (ingredients) => {
-//     const newIngredients = ingredients.filter(ingredient => (ingredient.user_id === this.state.user.id))
-//     this.setState({ingredients: newIngredients})
-//   }
-
-//   fetchRecipes = () => {
-//     fetch("http://localhost:3001/user_recipes")
-//     .then(res => res.json())
-//     .then(data => this.setRecipes(data))
-// }
-
-// setRecipes = (recipes) => {
-//   const newRecipes = recipes.filter(recipe => (recipe.user_id === this.state.user.id))
-//   this.setState({recipes: newRecipes})
-// }
   
-
-// handleClick = () => {
-//   console.log("hey")
-//   fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${this.state.ingredients.map(ingredient => ingredient.name).join(",+")}&number=4&apiKey=a820779a09b941cb84aff653698930e1`)
-//     .then(res => res.json())
-//     .then(data => this.getWholeRecipe(data))
-// }     
-//  //this in connection with that 
-// getWholeRecipe(recipes){
-// //console.log(recipes)
-// recipes.map(recipe => this.setState({missingIngredients: recipe.missedIngredients}))
-
-// // Promise.all(recipes.map(recipe => 
-  
-// //   fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?&apiKey=6b82bd43bd3f47b7b66398a4e4c11249`)
-// //   .then(res => res.json())
-// //   .then(data => this.setState({recipes: data}
-// //     ))))
-// }
+  fetchIngredients = () => {
+    fetch("http://localhost:3001/ingredients")
+     .then(res => res.json())
+     .then(ingredients => this.setIngredients(ingredients))
+  }
+ setIngredients = (ingredients) => {
+     const newIngredients = ingredients.filter(ingredient => (ingredient.user_id === this.state.user.id))
+     this.setState({ingredients: newIngredients})
+  }
 
   
   render(){
@@ -130,9 +103,9 @@ class App extends Component {
     handleLogin={this.handleLogin} 
     loggedInStatus={this.state.loggedInStatus}/> )} />
     <Route exact path="/userpage" render={props => (<UserPage {...props} ingredients={this.state.ingredients} user={this.state.user} handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
-    <Route exact path ="/ingredients" render={props => (<IngredientPage {...props} user={this.state.user}/>)}/>
-    <Route exact path ="/recipes" render={props => (<FavoritesPage {...props} recipes={this.state.recipes} user={this.state.user}/>)}/>
-    <Route exact path ="/shoppinglist" render={props => (<ShoppingList {...props} user={this.state.user}/>)}/>
+    <Route exact path ="/ingredients" render={props => (<IngredientPage {...props} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} ingredients={this.state.ingredients} />)}/>
+    <Route exact path ="/recipes" render={props => (<FavoritesPage {...props} recipes={this.state.recipes} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
+    <Route exact path ="/shoppinglist" render={props => (<ShoppingList {...props} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     </Switch>
     </div>
   </Router>

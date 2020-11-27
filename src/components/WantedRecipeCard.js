@@ -17,7 +17,7 @@ const WantedRecipeCard = (props) => {
             <img alt="2012 Toyota tundra" src={props.recipe.image} />
         </div>
         <div className="content">
-            <div className="title">
+            <div className="title-2">
                 {props.recipe.title}
             </div>
             <div className="needed-ingredients">
@@ -27,14 +27,15 @@ const WantedRecipeCard = (props) => {
             <div className="ingredients">
             {/* {extendedIngredients.map(ingredient => console.log(ingredient))} */}
             </div><br></br>
-            <button onClick={() => {setIsOpen(true); props.handleReadMore(props.recipe)} } >OPen Modal</button>
+            <button className="add-to-favs"onClick={() => {setIsOpen(true); props.handleReadMore(props.recipe)} } >More Options</button>
             <Modal open={isOpen} onClose={() => setIsOpen(false)}>
         <p>{props.recipe.title}</p>
+        <img alt="2012 Toyota tundra" src={props.recipe.image}></img>
         <p>You still need:</p>
         <p>{names}</p>
-        <button onClick={() => props.addToShoppingList(props.recipe)}>add these ingredients to my shopping list</button><br></br> 
-        <button onClick={() => props.addToFavs(props.wholeRecipe)}>add this recipe to my favorites</button> <br></br>
-        <a href={props.wholeRecipe.sourceUrl}>Read more</a>
+        <button  className="add-to-favs"onClick={() => props.addToShoppingList(props.recipe)}>add these ingredients to my shopping list</button><br></br> 
+        <button className="add-to-favs"onClick={() => props.addToFavs(props.wholeRecipe)}>add this recipe to my favorites</button> <br></br>
+        <a  className="add-to-favs" href={props.wholeRecipe.sourceUrl} target="_blank">Read more</a>
     </Modal>
         </div>
     </div>
