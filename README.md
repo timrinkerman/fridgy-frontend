@@ -1,10 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Fridgy
+This is the react front end for the program fridgy
+
+This app allows a user to
+* Browse random recipes 
+* Create a list of items that they have in the refrigerator 
+* Find recipes based on that list 
+* Create a shopping list based off of what they're missing from perspective recipes
 
 ## Requirements
 Fridgy backend is open and runnning, can be found [here](https://github.com/timrinkerman/fridgy-backend)
 
 
-In the project directory, you can run:
+In the terminal, you can run:
 
 ### `Npm Start`
 
