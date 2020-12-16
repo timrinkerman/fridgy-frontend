@@ -20,7 +20,9 @@ const key = "4a3311546fe34804ba49b5e07d88c2e7"
 const url = `https://api.spoonacular.com/recipes/findByIngredients.json?api-key=${key}`
 const apiCall =  "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2"
 class App extends Component {
- constructor(props){
+//  const [name, setName] = useState({loggedInStatus: 'NOT_LOGGED_IN', user: {}, recipes: [], ingredients: [] })
+ 
+  constructor(props){
    super(props);
  
   this.state = {
