@@ -1,4 +1,4 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { Fragment, PureComponent, useState, useEffect } from "react";
 import { NavLink } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import axios from 'axios';
@@ -11,6 +11,11 @@ const url = `https://api.spoonacular.com/recipes/findByIngredients.json?api-key=
 
 let requestString= "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com" 
 
+
+const [recipes, setRecipes] = useState([])
+const [vegRecipes, setVegRecipes] = useState([]) 
+const [glutenFreeRecipes, setGlutenFreeRecipea] = useState([])
+const [userRecipe, setUserRecipe] = useState([])
 class MainPage extends React.PureComponent{
   constructor(props) {
     super(props);
@@ -20,21 +25,22 @@ class MainPage extends React.PureComponent{
     glutenFree: [],
     userRecipes: [],
   };
+}
+
+useEffect(()=>{
+  props.handleCheckLogin()
+})
  
-
-}
-
-
- componentDidMount(){
+// componentDidMount(){
   
-  this.props.handleCheckLogin()
-  //window.location.reload(false)
-  // this.fetchRandom()
-  //   this.fetchVeg()
-  //   this.fetchGlutenFree()
-    //this.refreshPage()
-    // this.fetchIngredients()
-}
+//   this.props.handleCheckLogin()
+//   //window.location.reload(false)
+//   // this.fetchRandom()
+//   //   this.fetchVeg()
+//   //   this.fetchGlutenFree()
+//     //this.refreshPage()
+//     // this.fetchIngredients()
+// }
 
 
 refreshPage = () => {

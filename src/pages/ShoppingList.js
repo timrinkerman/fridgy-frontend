@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment, Component, useState } from "react";
 //import Ingredients from '../containers/Ingredients'
 //import Favorites from '../containers/Favorites'
 //import Recipes from '../containers/Recipes'
@@ -11,7 +11,9 @@ import MissingIngredientCard from '../components/MissingIngredientCard'
 import logo from '../assets/logo.png'
 
 class ShoppingList extends Component{
-state={
+  // const [shoppingItems, setShoppingItems] = useState([])
+  // const [value, setValue] = useState('')
+  state={
     shoppingItems:[],
     value: ''
 }
