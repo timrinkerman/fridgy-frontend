@@ -8,7 +8,7 @@ import MissingIngredientCard from '../components/MissingIngredientCard'
 //import MissingIngredientCard from '../components/MissingIngredientCard'
 //import RecipeCard from '../components/RecipeCard'
 //import WantedRecipeCard from '../components/WantedRecipeCard'
-
+import logo from '../assets/logo.png'
 
 class ShoppingList extends Component{
 state={
@@ -79,6 +79,14 @@ handleDeleteIngredient = (ingredient) =>{
         event.preventDefault();
         this.addToList(this.state.value)
         }
+
+
+handleLogoutClick(){
+  axios.delete("http://localhost:3001/logout", {withCredentials: true})
+  .then(resp=>this.props.handleLogout())
+  .catch(error=>console.log('logout error', error))
+  
+}
 // sortNames = (recipes) => {
 // recipes.map(recipe => this.setState({shoppingItems: [...this.state.shoppingItems, recipe.name]}))
 
@@ -104,26 +112,34 @@ handleDeleteIngredient = (ingredient) =>{
         
         //names.forEach(name => console.log(name))
         return(
-        
-        <div>
-             <header className="header-component">
-              <NavLink to="/userpage" className='home-button' ><span className="fridgy-text"><strong>Fridgy</strong></span></NavLink><br></br>
-            <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button"  ><strong>Ingredients</strong> </NavLink><br></br>
-            <NavLink to="/recipes" className="recipes" >Saved Recipes</NavLink><br></br>
-            </header>
-            {/* <div><form onSubmit={this.handleSubmit}>
-            <label>
-              Ingredient:
-              <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-          </form></div> */}
-        Shopping List
+          <div>
+          <div className="something">
+          <div className="">
+            <NavLink to="/userpage" className='home-button' ><a href="" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
+              </div>
+            <header className="header-component">
+           
+              <NavLink to="/" className='home-login' onClick={() => this.handleLogoutClick()}><span className="login-text"><strong>Sign Out</strong></span></NavLink><br></br><br></br>
+              <span className="title-text"><strong>Shopping List</strong></span>
+            <div className="navigation-buttons">
+            
+            <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button">Refrigerator</NavLink>
+            <NavLink to="/recipes" className="recipes" >Favorites</NavLink>
+            <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
+            </div>
+          
+        </header><br></br>
+        <hr className="header-line"/>
+        </div>
+    
+           
+        {/* <span className="title-text"><strong>Shopping List</strong></span> */}
         <div className='card-row'>
              
         {this.state.shoppingItems.map(ingredient => (<MissingIngredientCard ingredient={ingredient} key={ingredient.id} handleDeleteIngredient={this.handleDeleteIngredient}/>))}
         </div>
         </div>
+        
     )
 }
 

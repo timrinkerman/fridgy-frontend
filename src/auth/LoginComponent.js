@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import '../App.css';
 import axios from 'axios';
-
+import {NavLink } from "react-router-dom";
 
 class LoginComponent extends Component {
+    // turn into a hook
+    //  const [name, setName] = useState({email: '', password: '', loginErrors: ''})
     state = { 
         email: "",
         password: "",
         loginErrors: "",
      }
 
+    //  
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -37,15 +40,18 @@ class LoginComponent extends Component {
 
     render() { 
         return ( 
-            <div className="login-form">
-                <form onSubmit={this.handleSubmit}>
-                <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required/>
+            <div className="form-group">
+                <form class="form-label"onSubmit={this.handleSubmit}>
+                    {/*  <input class="form-input" type="email" name="email" placeholder="enter an email" value={name.email} onChange={e => setName({...name, email: e.target.value})} required/> */}
+                <input class="form-input" type="email" name="email" placeholder="enter an email" value={this.state.email} onChange={this.handleChange} required/>
                 <br></br>
-                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
+                    {/*  <input class="form-input" type="password" name="password" placeholder="enter a password" value={name.password} onChange={e => setName({...name, password: e.target.value})} required/> */}
+                <input class="form-input" type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
                 <br></br>
-                <button className="auth-button" type='submit'><span className="auth-button-text"><strong>Login</strong></span></button>
+                <button class="btn-primary" type='submit' ><span className="auth-button-text"><strong>Login</strong></span></button>
+                
                 </form>
-            </div>
+                </div>
          );
     }
 }

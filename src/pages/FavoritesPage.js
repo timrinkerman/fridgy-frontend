@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Favorites from '../containers/Favorites'
 import UserRecipeCard from '../components/UserRecipeCard'
 import { NavLink } from 'react-router-dom'
-
+import logo from '../assets/logo.png'
 
 //this is saved Recipes
 class FavoritesPage extends Component{
@@ -22,7 +22,7 @@ getRecipes(){
 
 setRecipes = (recipes) => {
     const newRecipes = recipes.filter(recipe => (recipe.user_id === this.props.user.id))
-    console.log(newRecipes)
+   // console.log(newRecipes)
     this.setState({recipes: newRecipes})
 }
 handleDelete = (recipe) => {
@@ -41,18 +41,30 @@ handleDelete = (recipe) => {
     })
   }
     render(){
-    console.log(this.state)
+   
         return(
         
-         <div className="fridgy-main-header">
-        <header className="header-component">
-        
-        <NavLink to="/userpage" className='home-button' ><span className="fridgy-text"><strong>Fridgy</strong></span></NavLink>
-        </header>
-        <div className="navigation-buttons">
-        <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button"  ><strong>Ingredients</strong> </NavLink>
-        <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
-        </div><br></br>
+            <div>
+            <div className="something">
+            <div className="">
+              {/* <a href="" className="logo"><img className="logo" src={logo} alt=""/></a> */}
+              <NavLink to="/userpage" className='home-button' ><a href="" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
+                </div>
+              <header className="header-component">
+             
+                <NavLink to="/" className='home-login' onClick={() => this.handleLogoutClick()}><span className="login-text"><strong>Sign Out</strong></span></NavLink><br></br>
+              
+              <div className="navigation-buttons">
+              
+              <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button">Refrigerator</NavLink>
+              <NavLink to="/recipes" className="recipes" >Favorites</NavLink>
+              <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
+              </div>
+            
+          </header><br></br>
+          <hr className="header-line"/>
+          </div>
+      
         
         <div className="card-row">
         {this.state.recipes.map(recipe => (<UserRecipeCard recipe={recipe} key={recipe.id} handleDelete={this.handleDelete} />))}

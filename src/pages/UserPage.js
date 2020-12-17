@@ -1,11 +1,9 @@
 import React, { Fragment, PureComponent } from "react";
-import Ingredients from '../containers/Ingredients'
-import Favorites from '../containers/Favorites'
-import Recipes from '../containers/Recipes'
 import { NavLink } from 'react-router-dom'
+import logo from "../assets/logo.png"
 import axios from 'axios';
-import IngredientPage from "../pages/IngredientPage"
-import Recipe from "../components/RecipeCard";
+import Recipes from '../containers/Recipes'
+import App from '../App'
 
 const key = process.env.REACT_APP_API_KEY
 const unirest = require('unirest')
@@ -23,40 +21,46 @@ class MainPage extends React.PureComponent{
     userRecipes: [],
   };
  
-// this.handleChange = this.handleChange.bind(this);
-// this.handleSubmit = this.handleSubmit.bind(this);
+
 }
 
 
  componentDidMount(){
-  console.log(this.props.user)  
   
-  this.fetchRandom()
-    this.fetchVeg()
-    this.fetchGlutenFree()
+  this.props.handleCheckLogin()
+  //window.location.reload(false)
+  // this.fetchRandom()
+  //   this.fetchVeg()
+  //   this.fetchGlutenFree()
+    //this.refreshPage()
     // this.fetchIngredients()
 }
 
-fetchRandom = () => {
-  console.log("hey")
-  fetch("https://api.spoonacular.com/recipes/random?number=5&apiKey=a3d1d81d14934346b6475f9c622814f0")
-    .then(res => res.json())
-    .then(data => this.setState({recipes: data.recipes}))
+
+refreshPage = () => {
+  //window.location.reload(false);
 }
 
-fetchVeg = () =>{
-  console.log("hey")
-  fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegetarian&apiKey=a3d1d81d14934346b6475f9c622814f0")
-  .then(res => res.json())
-  .then(data => this.setState({vegRecipes: data.recipes}))
- }
+// fetchRandom = () => {
+  
+//   fetch("https://api.spoonacular.com/recipes/random?number=5&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
+//     .then(res => res.json())
+//     .then(data => this.setState({recipes: data.recipes}))
+// }
 
-fetchGlutenFree = () =>{
-  console.log("hey")
-  fetch("https://api.spoonacular.com/recipes/random?number=5&tags=Gluten Free&apiKey=a3d1d81d14934346b6475f9c622814f0")
-  .then(res => res.json())
-  .then(data => this.setState({glutenFree: data.recipes}))
-}
+// fetchVeg = () =>{
+
+//   fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegetarian&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
+//   .then(res => res.json())
+//   .then(data => this.setState({vegRecipes: data.recipes}))
+//  }
+
+// fetchGlutenFree = () =>{
+  
+//   fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegan&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
+//   .then(res => res.json())
+//   .then(data => this.setState({glutenFree: data.recipes}))
+// }
 
 addToIngredients = (ingredient) => {
   console.log(this.props.user)
@@ -127,27 +131,30 @@ this.addToIngredients(this.state.value)
 
 
 render(){
-  //console.log(this.props.user)
 
-  //console.log(this.props.ingredients)
   
   return(
-    
+  
     <Fragment>
-      <div className="wrapper">
-      
+      <div className="container" onMouseMove={() => this.refreshPage()}>
+      <div className="">
+        <a href="" className="logo"><img className="logo" src={logo} alt=""/></a>
+            
+          </div>
         <header className="header-component">
+       
           <NavLink to="/" className='home-login' onClick={() => this.handleLogoutClick()}><span className="login-text"><strong>Sign Out</strong></span></NavLink><br></br>
-          <div className="fridgy-text">Fridgy</div>
-          <div><form onSubmit={this.handleSubmit}>
-            <label>
-              Ingredient:
+        
+          <div className="add-ingredient"><form className="" onSubmit={this.handleSubmit}>
+            <label className="ingredient-input">
+              Add to your refrigerator:
               <input type="text" name="name" value={this.state.value} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
-          </form></div>
+          </form>
+          </div>
             <div className="navigation-buttons">
-            <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button"  >Ingredients</NavLink>
+            <NavLink to="/ingredients" className='ingredients' className="ingredient-nav-button">Refrigerator</NavLink>
             <NavLink to="/recipes" className="recipes" >Favorites</NavLink>
             <NavLink to="/shoppinglist" className="shoppingList" >Shopping List</NavLink>
             </div>
@@ -156,21 +163,23 @@ render(){
         <hr className="header-line"/>
         </div>
     
-    <p>Spotlight</p>
+    <p className="title-text">Spotlight</p>
     <div className="card-row" >
       
     <Recipes addToFaves={this.addToFaves} recipes={this.state.recipes}/>
 
   </div>
+  <p className="title-text">Vegetarian</p>
   <div className="card-row">
-    Vegetarian
+   
   <Recipes addToFaves={this.addToFaves} recipes={this.state.vegRecipes}/>
     </div>
+    <p className="title-text">Vegan</p>
     <div className="card-row">
-    Vegan
+    
     <Recipes addToFaves={this.addToFaves} recipes={this.state.glutenFree}/>
     </div>
-    {/* </div> */}
+    
   </Fragment>
   )
 }

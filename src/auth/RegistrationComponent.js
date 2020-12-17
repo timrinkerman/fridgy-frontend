@@ -40,17 +40,21 @@ class RegistrationComponent extends Component {
 
     render() { 
         return ( 
-            <div>
+            
+            // <div className="form-container">
+                
+            <div className="form-group">
                 <form onSubmit={this.handleSubmit}>
-                <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required/>
+                <input  class="form-input" type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required/>
                 <br></br>
-                <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
+                <input  class="form-input" type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
                 <br></br>
-                <input type="password" name="password_confirmation" placeholder="Password confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required/>
+                <input   class="form-input" type="password" name="password_confirmation" placeholder="Password confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required/>
                 <br></br>
-                <button className="auth-button" type='submit'><span className="auth-button-text"><strong>Register</strong></span></button>
+                <button className="btn-primary" type='submit'><span className="auth-button-text"><strong>Register</strong></span></button>
                 </form>
             </div>
+           // </div>
          );
     }
 }
