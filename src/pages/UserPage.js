@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import axios from 'axios';
 import Recipes from '../containers/Recipes'
+import App from '../App'
 
 const key = process.env.REACT_APP_API_KEY
 const unirest = require('unirest')
