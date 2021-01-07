@@ -4,8 +4,7 @@ import Ingredients from '../containers/Ingredients'
 const Recipe = (props) => {
     const {id, title, image, sourceUrl, readyInMinutes, extendedIngredients, vegetarian, vegan, glutenFree} = props.recipe
     console.log(props.recipe)
-    //console.log(vegetarian)
-    //extendedIngredients.map(ingredient => console.log(ingredient.name + " "))
+    
     return(
     <div className="column">
     <>

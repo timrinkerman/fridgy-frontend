@@ -102,9 +102,7 @@ addToShoppingList = (recipe) =>{
 .then(response => {if (this.props.user.id === response.data.user_id){
   this.setState({ingredients: [...this.state.ingredients, response.data]})}
 })
-  //console.log(ingredients)
-  //let names = ingredients.map(ingredient => ingredient)
-  //names.forEach(element => console.log(element))
+ 
 
   
 }
@@ -134,7 +132,7 @@ handleDeleteIngredient = (ingredient) =>{
     })
   }
   handleSubmit = (event) => {
-    //console.log(this.state.value)
+    
     alert(`We've added ${this.state.value} to your list`);
     event.preventDefault();
     this.addToIngredients(this.state.value)
@@ -146,8 +144,8 @@ handleDeleteIngredient = (ingredient) =>{
     }
       
 
-    addToIngredients = (ingredient) => {
-      //console.log(ingredient)
+  addToIngredients = (ingredient) => {
+      
       axios.post("http://localhost:3001/ingredients", {
       name: ingredient,
       user_id: this.props.user.id
@@ -157,7 +155,7 @@ handleDeleteIngredient = (ingredient) =>{
     .then(response => this.setState({ingredients: response.data}))}
         
     
-    handleIngredientClick = (ingredient) => {
+  handleIngredientClick = (ingredient) => {
       console.log(ingredient)
       fetch(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient.name}&number=10&apiKey=6b82bd43bd3f47b7b66398a4e4c11249`)
         .then(res => res.json())
@@ -165,7 +163,7 @@ handleDeleteIngredient = (ingredient) =>{
      }     
     
     render(){
-        //console.log(this.state)
+        
         return(
             
           <div className="container">
