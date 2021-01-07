@@ -27,12 +27,12 @@ class MainPage extends React.PureComponent{
  componentDidMount(){
   
   this.props.handleCheckLogin()
-  //window.location.reload(false)
-  // this.fetchRandom()
-  //   this.fetchVeg()
-  //   this.fetchGlutenFree()
+  // window.location.reload(false)
+  this.fetchRandom()
+    this.fetchVeg()
+    this.fetchGlutenFree()
     //this.refreshPage()
-    // this.fetchIngredients()
+    
 }
 
 
@@ -40,26 +40,26 @@ refreshPage = () => {
   //window.location.reload(false);
 }
 
-// fetchRandom = () => {
+fetchRandom = () => {
   
-//   fetch("https://api.spoonacular.com/recipes/random?number=5&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
-//     .then(res => res.json())
-//     .then(data => this.setState({recipes: data.recipes}))
-// }
+  fetch("https://api.spoonacular.com/recipes/random?number=5&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
+    .then(res => res.json())
+    .then(data => this.setState({recipes: data.recipes}))
+}
 
-// fetchVeg = () =>{
+fetchVeg = () =>{
 
-//   fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegetarian&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
-//   .then(res => res.json())
-//   .then(data => this.setState({vegRecipes: data.recipes}))
-//  }
+  fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegetarian&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
+  .then(res => res.json())
+  .then(data => this.setState({vegRecipes: data.recipes}))
+ }
 
-// fetchGlutenFree = () =>{
+fetchGlutenFree = () =>{
   
-//   fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegan&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
-//   .then(res => res.json())
-//   .then(data => this.setState({glutenFree: data.recipes}))
-// }
+  fetch("https://api.spoonacular.com/recipes/random?number=5&tags=vegan&apiKey=6b82bd43bd3f47b7b66398a4e4c11249")
+  .then(res => res.json())
+  .then(data => this.setState({glutenFree: data.recipes}))
+}
 
 addToIngredients = (ingredient) => {
   console.log(this.props.user)
