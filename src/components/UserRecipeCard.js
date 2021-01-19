@@ -1,4 +1,4 @@
-import React, { component, useState}  from 'react'
+import React, { useState}  from 'react'
 import Ingredient from './IngredientCard'
 import Modal from '../modal'
 

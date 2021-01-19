@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 //import Ingredients from '../containers/Ingredients'
 //import Favorites from '../containers/Favorites'
 //import Recipes from '../containers/Recipes'

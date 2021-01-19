@@ -34,8 +34,8 @@ constructor(props){
                 <div className="wrapper">
                 <a href="" className="logo-wrap"><img className="logo" src={logo} alt=""/></a>
                     
-                <h3 class="title">Build recipes with what you already have in your Fridge!</h3>
-	            <p class="desc">Sign in</p>
+                <h3 className="title">Build recipes with what you already have in your Fridge!</h3>
+	            <p className="desc">Sign in</p>
                 
                     <LoginComponent handleCheckLogin={this.props.handleCheckLogin} handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                     <NavLink to="/registration" className='registration center-self'>Don't have credentials? Sign up</NavLink>

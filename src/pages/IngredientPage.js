@@ -1,7 +1,4 @@
-import React, { Fragment, Component } from "react";
-import Ingredients from '../containers/Ingredients'
-import Favorites from '../containers/Favorites'
-import Recipes from '../containers/Recipes'
+import React, { Component } from "react";
 import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import IngredientCard from '../components/IngredientCard'

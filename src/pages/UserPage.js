@@ -1,11 +1,11 @@
-import React, { Fragment, PureComponent } from "react";
+import React, { Fragment } from "react";
 import { NavLink } from 'react-router-dom'
 import logo from "../assets/logo.png"
 import axios from 'axios';
 import Recipes from '../containers/Recipes'
 
 const key = process.env.REACT_APP_API_KEY
-const unirest = require('unirest')
+
 const url = `https://api.spoonacular.com/recipes/findByIngredients.json?api-key=${key}`
 
 let requestString= "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com" 
@@ -85,7 +85,9 @@ addToFaves = (recipe) => {
   let ingredients = recipe.extendedIngredients.map(ingredient => ingredient.name)
   if(window.confirm(`Would you like to add ${recipe.title} to your favorites list?`)){
   if(!this.state.userRecipes.includes(recipe)){
-  axios.post("http://localhost:3001/user_recipes", {
+  
+  
+    axios.post("http://localhost:3001/user_recipes", {
   title: recipe.title,
   ingredients: ingredients,
   readyInMinutes: recipe.readyInMinutes,

@@ -38,12 +38,12 @@ class LoginComponent extends Component {
     render() { 
         return ( 
             <div className="form-group">
-                <form class="form-label"onSubmit={this.handleSubmit}>
-                <input class="form-input" type="email" name="email" placeholder="enter an email" value={this.state.email} onChange={this.handleChange} required/>
+                <form className="form-label"onSubmit={this.handleSubmit}>
+                <input className="form-input" type="email" name="email" placeholder="enter an email" value={this.state.email} onChange={this.handleChange} required/>
                 <br></br>
-                <input class="form-input" type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
+                <input className="form-input" type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required/>
                 <br></br>
-                <button class="btn-primary" type='submit' ><span className="auth-button-text"><strong>Login</strong></span></button>
+                <button className="btn-primary" type='submit' ><span className="auth-button-text"><strong>Login</strong></span></button>
                 
                 </form>
                 </div>

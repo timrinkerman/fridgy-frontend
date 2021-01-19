@@ -15,7 +15,7 @@ class RegistrationPage extends Component{
 
                 <header className="wrapper">
 
-                <a href="" className="logo-wrap"><img className="logo" src={logo} alt=""/></a>
+                <a href="" className="logo-wrap"><img className="logo" alt=""/></a>
                     <RegistrationComponent handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                     <NavLink to="/login" className='login' ><span className="login-text"><strong>Login</strong></span></NavLink>
                 </header>
