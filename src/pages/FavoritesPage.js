@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Favorites from '../containers/Favorites'
+
 import UserRecipeCard from '../components/UserRecipeCard'
 import { NavLink } from 'react-router-dom'
 import logo from '../assets/logo.png'
@@ -48,7 +48,7 @@ handleDelete = (recipe) => {
             <div className="something">
             <div className="">
               {/* <a href="" className="logo"><img className="logo" src={logo} alt=""/></a> */}
-              <NavLink to="/userpage" className='home-button' ><a href="" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
+              <NavLink to="/userpage" className='home-button' ><a href="a place" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
                 </div>
               <header className="header-component">
              

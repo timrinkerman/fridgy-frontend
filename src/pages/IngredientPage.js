@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import IngredientCard from '../components/IngredientCard'
-import MissingIngredientCard from '../components/MissingIngredientCard'
-import RecipeCard from '../components/RecipeCard'
 import WantedRecipeCard from '../components/WantedRecipeCard'
 import logo from '../assets/logo.png'
 class IngredientPage extends Component{
@@ -35,9 +33,9 @@ class IngredientPage extends Component{
   )
   }
    componentDidMount(){
-    console.log("hey from ingredients")  
-    this.props.handleCheckLogin()
-    this.fetchIngredients()
+    console.log(this.props.user)  
+    //this.props.handleCheckLogin()
+    //this.fetchIngredients()
     this.setState({ingredients: this.props.ingredients})
    }
    
@@ -46,8 +44,9 @@ fetchIngredients = () => {
     .then(res => res.json())
     .then(ingredients => this.setIngredients(ingredients))
 }
-setIngredients = (ingredients) => {
-    const newIngredients = ingredients.filter(ingredient => (ingredient.user_id === this.props.user.id))
+setIngredients = () => {
+    const newIngredients = this.props.user.ingredients
+    // ingredients.filter(ingredient => (ingredient.user_id === this.props.user.id))
     this.setState({ingredients: newIngredients})
   }
 
@@ -62,12 +61,8 @@ getWholeRecipe(recipes){
 this.setState({recipes: recipes})
 recipes.map(recipe => this.setState({missingIngredients: recipe.missedIngredients}))
 
-// Promise.all(recipes.map(recipe => 
-//   fetch(`https://api.spoonacular.com/recipes/${recipe.id}/information?&apiKey=a820779a09b941cb84aff653698930e1`)
-//   .then(res => res.json())
-//   .then(data => this.setState({recipes: data}
-//     ))))
 }
+
 displayMissingIngredients = (recipe) =>{
 
 let names = recipe.missedIngredients.map(ingredient => ingredient.name)
@@ -165,7 +160,7 @@ handleDeleteIngredient = (ingredient) =>{
             
           <div className="container">
           <div className="">
-          <NavLink to="/userpage" className='home-button' ><a href="" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
+          <NavLink to="/userpage" className='home-button' a href="a place" className="logo"><img className="logo" src={logo} alt=""/></NavLink> 
                 
               </div>
             <header className="header-component">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Modal from '../modal'
-import Ingredients from '../containers/Ingredients'
+
 
 //change to class component 
 const WantedRecipeCard = (props) => {
@@ -35,7 +35,7 @@ const WantedRecipeCard = (props) => {
         <p>{names}</p>
         <button  className="add-to-favs"onClick={() => props.addToShoppingList(props.recipe)}>add these ingredients to my shopping list</button><br></br> 
         <button className="add-to-favs"onClick={() => props.addToFavs(props.wholeRecipe)}>add this recipe to my favorites</button> <br></br>
-        <a  className="add-to-favs" href={props.wholeRecipe.sourceUrl} target="_blank">Read more</a>
+        <a  className="add-to-favs" href={props.wholeRecipe.sourceUrl}>Read more</a>
     </Modal>
         </div>
     </div>

@@ -1,9 +1,9 @@
 import React from 'react'
-import Ingredients from '../containers/Ingredients'
+
 
 const Recipe = (props) => {
     const {id, title, image, sourceUrl, readyInMinutes, extendedIngredients, vegetarian, vegan, glutenFree} = props.recipe
-    console.log(props.recipe)
+   
     
     return(
     <div className="column">
@@ -37,7 +37,7 @@ const Recipe = (props) => {
             {`${extendedIngredients.map(ingredient => " " + ingredient.name)}`}
             </div><br></br>
             <button className="add-to-favs"onClick={() => props.handleClick(props.recipe)}>Add to my favorites</button><br></br>
-            <a className="read-more" href={sourceUrl} target="_blank">Read more...</a>
+            <a className="read-more" href={sourceUrl} >Read more...</a>
         </div>
     </div>
     </>

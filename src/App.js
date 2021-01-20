@@ -3,22 +3,20 @@ import RegistrationPage from './pages/RegistrationPage';
 import { BrowserRouter as Router, 
   Route, 
   Switch, 
-  Link, 
-  Redirect 
 } from "react-router-dom";
 import './App.css';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
-import { useHistory } from 'react-router-dom';
+
 import axios from 'axios';
 import IngredientPage from './pages/IngredientPage';
-import Favorites from './containers/Favorites';
+
 import FavoritesPage from './pages/FavoritesPage'
 import ShoppingList from './pages/ShoppingList'
 
-const key = "4a3311546fe34804ba49b5e07d88c2e7"
-const url = `https://api.spoonacular.com/recipes/findByIngredients.json?api-key=${key}`
-const apiCall =  "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2"
+// const key = "4a3311546fe34804ba49b5e07d88c2e7"
+// const url = `https://api.spoonacular.com/recipes/findByIngredients.json?api-key=${key}`
+// const apiCall =  "https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2"
 class App extends Component {
  constructor(props){
    super(props);
@@ -31,7 +29,7 @@ class App extends Component {
   };}
 
   checkLoginStatus = () => {
-    console.log("checkLoginStatus")
+    console.log(this.state.user)
     axios.get("http://localhost:3001/logged_in", { withCredentials: true})
   
     .then(response => {

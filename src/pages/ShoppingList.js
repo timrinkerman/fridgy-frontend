@@ -27,12 +27,12 @@ fetch("http://localhost:3001/shopping_items")
 }
 
 handleDeleteIngredient = (ingredient) =>{
-  console.log(ingredient)
-  let text = ingredient.name.split('')
-  let text2 = text.filter(letter  => letter !== "[")
-  let text3 = text2.filter(letter => letter !== "]")
-  let text4 = text3.filter(letter => letter !== '"')
-  let final = text4.join("")
+  // console.log(ingredient)
+  // let text = ingredient.name.split('')
+  // let text2 = text.filter(letter  => letter !== "[")
+  // let text3 = text2.filter(letter => letter !== "]")
+  // let text4 = text3.filter(letter => letter !== '"')
+  // let final = text4.join("")
   if(window.confirm(`Are you sure you want to delete ${ingredient.recipe} from you shopping list?`)){
     let array = [...this.state.shoppingItems]; // make a separate copy of the array
     let index = array.indexOf(ingredient)
@@ -87,35 +87,15 @@ handleLogoutClick(){
   .catch(error=>console.log('logout error', error))
   
 }
-// sortNames = (recipes) => {
-// recipes.map(recipe => this.setState({shoppingItems: [...this.state.shoppingItems, recipe.name]}))
 
-// }
 
     render(){
-        //console.log(this.state.shoppingItems.map(ingredient => ingredient.recipe))
-    //     let names = this.state.shoppingItems.map(ingredient => ingredient.name)
-    //    let text = names.map(ingredient => ingredient)
-    //     let god = text.map(jesus => jesus.split(""))
-    //     console.log(god)
-    // let text2 = god.map(letter => letter.filter(char => char !== "["))
-    // //console.log(text2)
-    //  let text3 = text2.map(char => char.filter(letter => letter !== "]"))
-    //  let text4 = text3.map(char => char.filter(letter => letter !== '"'))
-    //  console.log(text4)   
-    //  let text5 = text4.map(char => char.filter(letter => letter !== ','))
-    //     let text6 = text5.map(char => char.filter(letter => letter !== ' '))
-    //  let final = text6.map(char => char.join(""))
-    //     console.log(final)
-    // console.log(final.map(ingredient => ingredient.split(", ")))
-        
-        
-        //names.forEach(name => console.log(name))
+     
         return(
           <div>
           <div className="something">
           <div className="">
-            <NavLink to="/userpage" className='home-button' ><a href="" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
+            <NavLink to="/userpage" className='home-button' ><a href="a place" className="logo"><img className="logo" src={logo} alt=""/></a></NavLink> 
               </div>
             <header className="header-component">
            

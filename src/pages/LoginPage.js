@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from "react";
-import axios from 'axios';
-import Registration from "../auth/RegistrationComponent"
 import { NavLink } from 'react-router-dom'
 import LoginComponent from "../auth/LoginComponent";
 import logo from '../assets/logo.png'
@@ -32,7 +30,7 @@ constructor(props){
               
 
                 <div className="wrapper">
-                <a href="" className="logo-wrap"><img className="logo" src={logo} alt=""/></a>
+                <a href="a place" className="logo-wrap"><img className="logo" src={logo} alt=""/></a>
                     
                 <h3 className="title">Build recipes with what you already have in your Fridge!</h3>
 	            <p className="desc">Sign in</p>

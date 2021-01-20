@@ -1,10 +1,8 @@
-import React, { useState}  from 'react'
-import Ingredient from './IngredientCard'
-import Modal from '../modal'
+import React from 'react'
 
 
 const UserRecipeCard = (props) => {
-    const [isOpen, setIsOpen] = useState(false)
+   
     const {id, title, image, sourceUrl, readyInMinutes, ingredients} = props.recipe
     
     let text = ingredients.split('')
@@ -31,7 +29,7 @@ const UserRecipeCard = (props) => {
             <div className="ingredients">
             Ingredients: {final}
             </div><br></br>
-            <a className="read-more" href={sourceUrl} target="_blank">Read more...</a><br></br>
+            <a className="read-more" href={sourceUrl} >Read more...</a><br></br>
             <button className="delete-button" onClick={() => props.handleDelete(props.recipe)}>Delete</button>
        
         </div>
