@@ -54,6 +54,8 @@ class App extends Component {
   componentDidMount = () =>{
     this.checkLoginStatus()
     this.fetchIngredients()
+    this.getRecipes()
+    
   }
   
   handleLogin = (data) => {
@@ -80,6 +82,19 @@ class App extends Component {
      this.setState({ingredients: newIngredients})
   }
 
+  getRecipes(){
+    fetch("http://localhost:3001/user_recipes")
+    .then(res => res.json())
+    .then(data => this.setRecipes(data))
+    
+  }
+  
+  setRecipes = (recipes) => {
+    const newRecipes = recipes.filter(recipe => (recipe.user_id === this.state.user.id))
+   
+    this.setState({recipes: newRecipes})
+    
+  }
   
   render(){
   return (
@@ -101,7 +116,7 @@ class App extends Component {
     handleLogin={this.handleLogin} 
     loggedInStatus={this.state.loggedInStatus}/> )} />
     <Route exact path="/userpage" render={props => (<UserPage {...props} ingredients={this.state.ingredients} user={this.state.user} handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
-    <Route exact path ="/ingredients" render={props => (<IngredientPage ingredients={this.state.ingredients} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} ingredients={this.state.ingredients} />)}/>
+    <Route exact path ="/ingredients" render={props => (<IngredientPage ingredients={this.state.ingredients} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     <Route exact path ="/recipes" render={props => (<FavoritesPage {...props} recipes={this.state.recipes} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     <Route exact path ="/shoppinglist" render={props => (<ShoppingList {...props} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     </Switch>
@@ -116,20 +131,3 @@ export default App;
 
 
 
-  //componentDidMount = () =>{
-    // fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search", {
-    //   "method": "GET",
-    //   "headers": {
-    //     "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-    //     "x-rapidapi-key": "6769fc4edbmsh022653918a3cbd9p1d66ddjsne185340ac03d"
-    //   }
-    // })
-    // .then(res => res.json())
-    // .then(render);
-    
-    // fetch(url)
-    // .then(res => res.json())
-    // .then(console.log)
-    //console.log(url)
-//}
-  

@@ -38,14 +38,12 @@ addToFaves = (recipe) => {
 
 
 componentDidMount(){
-    console.log(this.props.user)  
-    //this.props.checkLoginStatus()
-    //this.setState({ingredients: this.props.user.ingredients})
     this.fetchIngredients()
    }
    
 fetchIngredients = () => {  
   if(this.props.user.ingredients){
+    console.log(this.props.user.ingredients)
   this.setState({ingredients: this.props.user.ingredients})
   }else{
    fetch("http://localhost:3001/ingredients")
@@ -100,11 +98,7 @@ addToShoppingList = (recipe) =>{
 )
 .then(response => {if (this.props.user.id === response.data.user_id){
   this.setState({ingredients: [...this.state.ingredients, response.data]})}
-})
- 
-
-  
-}
+})}
 
 handleReadMore = (recipe) =>{
   
@@ -161,6 +155,13 @@ handleDeleteIngredient = (ingredient) =>{
         .then(data => this.getWholeRecipe(data))
      }     
     
+
+     handleLogoutClick(){
+      axios.delete("http://localhost:3001/logout", {withCredentials: true})
+      .then(resp=>this.props.handleLogout())
+      .catch(error=>console.log('logout error', error))
+      
+    }
     render(){
         
         return(
