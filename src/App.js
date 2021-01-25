@@ -101,7 +101,7 @@ class App extends Component {
     handleLogin={this.handleLogin} 
     loggedInStatus={this.state.loggedInStatus}/> )} />
     <Route exact path="/userpage" render={props => (<UserPage {...props} ingredients={this.state.ingredients} user={this.state.user} handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
-    <Route exact path ="/ingredients" render={props => (<IngredientPage {...props} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} ingredients={this.state.ingredients} />)}/>
+    <Route exact path ="/ingredients" render={props => (<IngredientPage ingredients={this.state.ingredients} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} ingredients={this.state.ingredients} />)}/>
     <Route exact path ="/recipes" render={props => (<FavoritesPage {...props} recipes={this.state.recipes} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     <Route exact path ="/shoppinglist" render={props => (<ShoppingList {...props} user={this.state.user}  handleCheckLogin={this.checkLoginStatus} handleLogout={this.handleLogout} />)}/>
     </Switch>

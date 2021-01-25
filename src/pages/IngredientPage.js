@@ -17,7 +17,7 @@ class IngredientPage extends Component{
 
   }     
    }
-   addToFaves = (recipe) => {
+addToFaves = (recipe) => {
     console.log(recipe)
     window.alert(`${recipe.title} has been added to your favorites!`)
     let ingredients = recipe.extendedIngredients.map(ingredient => ingredient.name)
@@ -32,21 +32,28 @@ class IngredientPage extends Component{
   { withCredentials: true }
   )
   }
-   componentDidMount(){
+  
+
+
+
+
+componentDidMount(){
     console.log(this.props.user)  
-    //this.props.handleCheckLogin()
-    //this.fetchIngredients()
-    this.setState({ingredients: this.props.ingredients})
+    //this.props.checkLoginStatus()
+    //this.setState({ingredients: this.props.user.ingredients})
+    this.fetchIngredients()
    }
    
-fetchIngredients = () => {
+fetchIngredients = () => {  
+  if(this.props.user.ingredients){
+  this.setState({ingredients: this.props.user.ingredients})
+  }else{
    fetch("http://localhost:3001/ingredients")
     .then(res => res.json())
     .then(ingredients => this.setIngredients(ingredients))
-}
-setIngredients = () => {
-    const newIngredients = this.props.user.ingredients
-    // ingredients.filter(ingredient => (ingredient.user_id === this.props.user.id))
+}};
+setIngredients = (ingredients) => {
+    const newIngredients = ingredients.filter(ingredient => (ingredient.user_id === this.props.user.id))
     this.setState({ingredients: newIngredients})
   }
 
