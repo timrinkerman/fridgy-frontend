@@ -17,7 +17,7 @@ class LoginComponent extends Component {
     }
 
     handleSubmit = (event) => {
-        axios.post("https://big-fridgy.herokuapp.com/sessions", {
+        axios.post("/sessions", {
             user: {
                 email: this.state.email,
                 password: this.state.password

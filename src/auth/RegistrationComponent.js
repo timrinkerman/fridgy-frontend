@@ -18,7 +18,7 @@ class RegistrationComponent extends Component {
 
     handleSubmit = (event) => {
         
-        axios.post("https://big-fridgy.herokuapp.com/registrations", {
+        axios.post("/registrations", {
             user: {
                 email: this.state.email,
                 password: this.state.password,

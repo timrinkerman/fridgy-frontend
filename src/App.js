@@ -30,7 +30,7 @@ class App extends Component {
 
   checkLoginStatus = () => {
     console.log(this.state.user)
-    axios.get("https://big-fridgy.herokuapp.com/logged_in", { withCredentials: true})
+    axios.get("/logged_in", { withCredentials: true})
   
     .then(response => {
       console.log(response)
