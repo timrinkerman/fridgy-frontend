@@ -11,6 +11,7 @@ state ={
 }
 componentDidMount(){
     this.getRecipes()
+    
 }
 getRecipes(){
   console.log(this.props.recipes)

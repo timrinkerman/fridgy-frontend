@@ -139,7 +139,7 @@ render(){
     <Fragment>
       <div className="container" onMouseMove={() => this.refreshPage()}>
       <div className="">
-        <a href="" className="logo"><img className="logo" src={logo} alt=""/></a>
+        <a href="something" className="logo"><img className="logo" src={logo} alt=""/></a>
             
           </div>
         <header className="header-component">
